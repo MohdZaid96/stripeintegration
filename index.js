@@ -41,7 +41,7 @@ app.post(`/api/v1/capture_intent/:id`, async (req, res) => {
     const { id } = req.params;
     console.log(req);
     const paymentIntent = await stripe.paymentIntents.confirm(id, {
-      payment_method: "pm_card_visa",
+      payment_method: req.body.payment_method,
       return_url: `${req.protocol}://${req.get("host") + req.originalUrl}`,
     });
     res.status(200).json({ paymentIntent, msg: "Payment Intent Captured" });
