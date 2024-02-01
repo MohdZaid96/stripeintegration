@@ -56,7 +56,7 @@ app.post(`/api/v1/create_refund/:id`, async (req, res) => {
     const refund = await stripe.refunds.create({
       charge: req.body.charge,
     });
-    res.status(200).json({ paymentIntent, msg: "Refund Initiated" });
+    res.status(200).json({ refund, msg: "Refund Initiated" });
   } catch (error) {
     res.json(error).status(500);
   }
